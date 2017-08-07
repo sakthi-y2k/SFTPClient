@@ -6,6 +6,7 @@ using System.Web;
 
 namespace SFTPClient.Models
 {
+    [Serializable]
     public class SftpViewModel
     {
         [Required]
@@ -21,9 +22,15 @@ namespace SFTPClient.Models
         public string UserName { get; set; }
 
         [Required]
-        [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
+
+        public List<HttpPostedFileBase> Files { get; set; }
+
+        public SftpViewModel()
+        {
+            Files = new List<HttpPostedFileBase>();
+        }
 
     }
 }

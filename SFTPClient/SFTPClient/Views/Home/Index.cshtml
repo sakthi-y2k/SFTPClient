@@ -5,23 +5,23 @@
 
 <h2>@ViewBag.Title.</h2>
 
-@using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("Connect", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
     @*<h4>Create a new account.</h4>*@
     <hr />
     @Html.ValidationSummary()
     <div class="form-group">
-    @Html.LabelFor(m => m.HostName, new { @class = "col-md-2 control-label" })
-    <div class="col-md-10">
-        @Html.TextBoxFor(m => m.HostName, new { @class = "form-control" })
-    </div>
+        @Html.LabelFor(m => m.HostName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.HostName, new { @class = "form-control" })
+        </div>
     </div>
     <div class="form-group">
-    @Html.LabelFor(m => m.Port, new { @class = "col-md-2 control-label" })
-    <div class="col-md-10">
-        @Html.TextBoxFor(m => m.Port, new { @class = "form-control" })
-    </div>
+        @Html.LabelFor(m => m.Port, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Port, new { @class = "form-control" })
+        </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
@@ -32,15 +32,61 @@
     <div class="form-group">
         @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.Password, new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Validate" />
+            <input type="submit" class="btn btn-default" value="Validate and Connect" />
         </div>
     </div>
 }
+
+@using (Html.BeginForm("Upload", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Files, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Files, new { type = "file", multiple = "multiple", name = "Files", @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Upload" />
+        </div>
+    </div>
+}
+
+@if (ViewBag.Files != null)
+{ <form role="form" class="form-horizontal">
+        <div class="form-group">
+            <label class="col-md-6 control-label" style="text-align:left;">File Name</label>
+            <label class="col-md-2 control-label" style="text-align:left;">Size</label>
+            <label class="col-md-2 control-label" style="text-align:center;">Action</label>
+        </div>
+        @foreach (var item in (List<SFTPClient.Models.FileViewModel>)ViewBag.Files)
+        {
+            if (!item.IsDirectory)
+            {
+                <div class="row" style="border-bottom: 1px solid #dedede;padding: 5px;">
+                    <span class="col-md-6" style="text-align:left;">@item.FileName</span>
+                    <span class="col-md-2">@item.Size</span>
+                    <a class="col-md-1" href="@Url.Action("Download", new { path = item.Path })">Download</a>
+                    <a class="col-md-1" href="@Url.Action("Delete", new { path = item.Path })">Delete</a>
+                </div>
+            }
+        }
+    </form>
+}
+else
+{
+        <div class="form-group">
+            <div class="col-md-6">No files in SFTP</div>
+        </div>
+}
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
