@@ -40,22 +40,22 @@ namespace SFTPClient.Controllers
 
         public ActionResult Connect(SftpViewModel model)
         {
-            using (SftpClient client = new SftpClient(model.HostName, model.Port, model.UserName, model.Password))
-            {
-                client.Connect();
-                client.Connect();
-                var items = client.ListDirectory(".");
-                if (items != null && items.Count() > 0)
-                {
-                    ViewBag.Files = client.ListDirectory(".").Select(x => new FileViewModel
-                    {
-                        FileName = x.FullName,
-                        Path = x.FullName,
-                        Size = x.Attributes.Size.ToString(),
-                        IsDirectory = x.IsDirectory
-                    }).ToList();
-                }
-            }
+            //using (SftpClient client = new SftpClient(model.HostName, model.Port, model.UserName, model.Password))
+            //{
+            //    client.Connect();
+            //    client.Connect();
+            //    var items = client.ListDirectory(".");
+            //    if (items != null && items.Count() > 0)
+            //    {
+            //        ViewBag.Files = client.ListDirectory(".").Select(x => new FileViewModel
+            //        {
+            //            FileName = x.FullName,
+            //            Path = x.FullName,
+            //            Size = x.Attributes.Size.ToString(),
+            //            IsDirectory = x.IsDirectory
+            //        }).ToList();
+            //    }
+            //}
 
             if (ModelState.IsValid)
             {
