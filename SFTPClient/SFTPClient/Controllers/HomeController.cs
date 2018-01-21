@@ -21,6 +21,7 @@ namespace SFTPClient.Controllers
                 using (SftpClient client = new SftpClient(model.HostName, model.Port, model.UserName, model.Password))
                 {
                     client.Connect();
+                    client.Connect();
                     var items = client.ListDirectory(".");
                     if (items != null && items.Count() > 0)
                     {
