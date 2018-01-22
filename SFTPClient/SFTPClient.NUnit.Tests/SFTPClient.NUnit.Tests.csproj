@@ -79,10 +79,10 @@
     <Error Condition="!Exists('..\packages\MSBuildTasks.1.5.0.235\build\MSBuildTasks.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MSBuildTasks.1.5.0.235\build\MSBuildTasks.targets'))" />
   </Target>
   <Target Name="RunUnitTests" DependsOnTargets="Build">
-    <CreateItem Include="C:\Users\hi\Source\Repos\SFTPClient\SFTPClient\SFTPClient.NUnit.Tests\bin\Debug\*.Tests.dll">
+    <CreateItem Include="C:\DevOps\quickbuild-7.0.31\workspace\root\Dev\SFTPClient\SFTPClient.NUnit.Tests\bin\Debug\*.Tests.dll">
       <Output TaskParameter="Include" ItemName="TestAssembly" />
     </CreateItem>
-    <NUnit3 ToolPath="C:\Users\hi\Source\Repos\SFTPClient\SFTPClient\packages\NUnit.ConsoleRunner.3.7.0\tools" Assemblies="@(TestAssembly)" />
+    <NUnit3 ToolPath="C:\DevOps\quickbuild-7.0.31\workspace\root\Dev\SFTPClient\packages\NUnit.ConsoleRunner.3.7.0\tools" Assemblies="@(TestAssembly)" />
   </Target>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
