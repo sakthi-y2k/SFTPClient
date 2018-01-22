@@ -11,9 +11,21 @@ namespace SFTPClient.NUnit.Tests
     public class Class1
     {
         [Test]
-        public void SampleTest()
+        public void SampleTest1()
         {
             Assert.IsTrue(true);
+        }
+
+        [Test]
+        public void SampleTest2()
+        {
+            Assert.IsTrue(true);
+        }
+
+        [Test]
+        public void SampleTest3()
+        {
+            Assert.IsTrue(false);
         }
     }
 }
