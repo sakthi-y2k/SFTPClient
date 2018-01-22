@@ -1,0 +1,9 @@
+10. Check if JAVA_HOME is set properly. Add SONAR_SCANNER_HOME as Environment
+
+12. Create “sonar-project.properties” under the project path in which the code need to be
+
+C:\Windows\Microsoft.NET\Framework\v4.0.30319\msbuild.exe NUnit.MsBuildDemo.build /t:Run
+
+C:\Program Files (x86)\MSBuild\14.0\Bin\MSBuild.exe
+
+"C:\Program Files (x86)\MSBuild\14.0\Bin\MSBuild.exe" "C:\Users\hi\Source\Repos\SFTPClient\SFTPClient\SFTPClient.build" /t:Test
